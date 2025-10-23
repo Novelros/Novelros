@@ -1,4 +1,4 @@
-name: Generate Pacman
+name: Generate Pacman Stats
 
 on:
   schedule:
@@ -25,72 +25,51 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Create Pacman SVG
+      - name: Generate contribution grid (как основа)
+        uses: Platane/snk@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/contribution-grid.svg
+          
+      - name: Create Pacman overlay
         run: |
-          mkdir -p dist
-          # Создаем анимированного Пакмена
+          # Создаем Пакмена поверх сетки контрибуций
           cat > dist/github-contribution-grid-snake.svg << 'EOF'
-          <svg width="100%" height="100" xmlns="http://www.w3.org/2000/svg">
+          <svg width="100%" height="170" xmlns="http://www.w3.org/2000/svg">
             <style>
-              @keyframes pacman-mouth {
-                0%, 100% { clip-path: polygon(50% 50%, 100% 0%, 100% 100%); }
-                50% { clip-path: polygon(50% 50%, 100% 25%, 100% 75%); }
+              @keyframes eat {
+                0%, 100% { clip-path: polygon(50% 50%, 100% 20%, 100% 80%); }
+                50% { clip-path: polygon(50% 50%, 100% 40%, 100% 60%); }
               }
-              @keyframes dots-move {
-                0% { transform: translateX(0); }
-                100% { transform: translateX(-200px); }
-              }
-              .pacman {
-                animation: pacman-mouth 0.6s infinite;
+              .pacman-head {
                 fill: #FFD700;
-              }
-              .dots-container {
-                animation: dots-move 3s infinite linear;
-              }
-              .dot {
-                fill: #FFD700;
+                animation: eat 0.5s infinite;
               }
             </style>
             
-            <!-- Фон -->
-            <rect width="100%" height="100%" fill="#0d1117"/>
-            
-            <!-- Текст -->
-            <text x="50%" y="20" text-anchor="middle" fill="#FFD700" font-family="Arial" font-size="14">🎮 Pacman eats my contributions!</text>
+            <!-- Заголовок -->
+            <text x="50%" y="20" text-anchor="middle" fill="#FFD700" font-family="Arial" font-size="16" font-weight="bold">
+              🎮 Pacman eating my GitHub contributions!
+            </text>
             
             <!-- Пакмен -->
-            <g transform="translate(50, 50)">
-              <circle cx="0" cy="0" r="20" class="pacman"/>
+            <g transform="translate(30, 60)">
+              <!-- Тело Пакмена -->
+              <circle cx="0" cy="0" r="25" class="pacman-head"/>
+              
+              <!-- Глаз -->
+              <circle cx="-8" cy="-10" r="3" fill="#000"/>
             </g>
             
-            <!-- Точки которые ест Пакмен -->
-            <g class="dots-container" transform="translate(300, 50)">
-              <circle cx="0" cy="0" r="3" class="dot"/>
-              <circle cx="30" cy="0" r="3" class="dot"/>
-              <circle cx="60" cy="0" r="3" class="dot"/>
-              <circle cx="90" cy="0" r="3" class="dot"/>
-              <circle cx="120" cy="0" r="3" class="dot"/>
-              <circle cx="150" cy="0" r="3" class="dot"/>
-              <circle cx="180" cy="0" r="3" class="dot"/>
-            </g>
+            <!-- Текст описания -->
+            <text x="50%" y="150" text-anchor="middle" fill="#8b949e" font-family="Arial" font-size="12">
+              Yellow dots are my contributions - Pacman is hungry!
+            </text>
             
-            <!-- Призраки -->
-            <g transform="translate(400, 45)">
-              <circle cx="0" cy="0" r="12" fill="#FF0000"/>
-              <rect x="-8" y="0" width="16" height="8" fill="#FF0000"/>
-              <circle cx="-4" cy="-3" r="2" fill="white"/>
-              <circle cx="4" cy="-3" r="2" fill="white"/>
-              <circle cx="-4" cy="-3" r="1" fill="black"/>
-              <circle cx="4" cy="-3" r="1" fill="black"/>
-            </g>
-            
-            <g transform="translate(450, 45)">
-              <circle cx="0" cy="0" r="12" fill="#00FFFF"/>
-              <rect x="-8" y="0" width="16" height="8" fill="#00FFFF"/>
-              <circle cx="-4" cy="-3" r="2" fill="white"/>
-              <circle cx="4" cy="-3" r="2" fill="white"/>
-              <circle cx="-4" cy="-3" r="1" fill="black"/>
-              <circle cx="4" cy="-3" r="1" fill="black"/>
+            <!-- Призраки в углу -->
+            <g transform="translate(500, 50)">
+              <text x="0" y="0" fill="#8b949e" font-family="Arial" font-size="10">Ghosts: Unmerged PRs</text>
             </g>
           </svg>
           EOF
