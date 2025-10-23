@@ -45,8 +45,8 @@ jobs:
               }
               
               .pacman-mouth {
-                fill: #0d1117;
-                animation: eat-mouth 0.4s infinite;
+                fill: #0d0000;
+                animation: eat-mouth 0.3s infinite;
               }
               
               .dots-container {
@@ -90,13 +90,15 @@ jobs:
             
             <!-- Точки двигаются справа налево через центр -->
             <g class="dots-container" transform="translate(0, 80)">
-              <circle cx="450" cy="0" r="5" class="dot"/>
-              <circle cx="500" cy="0" r="5" class="dot"/>
-              <circle cx="550" cy="0" r="5" class="dot"/>
-              <circle cx="600" cy="0" r="5" class="dot"/>
-              <circle cx="650" cy="0" r="5" class="dot"/>
-              <circle cx="700" cy="0" r="5" class="dot"/>
-              <circle cx="750" cy="0" r="5" class="dot"/>
+              <circle cx="200" cy="0" r="4" class="dot"/>
+              <circle cx="250" cy="0" r="4" class="dot"/>
+              <circle cx="300" cy="0" r="4" class="dot"/>
+              <circle cx="350" cy="0" r="4" class="dot"/>
+              <circle cx="400" cy="0" r="4" class="dot"/>
+              <circle cx="450" cy="0" r="4" class="dot"/>
+              <circle cx="500" cy="0" r="4" class="dot"/>
+              <circle cx="550" cy="0" r="4" class="dot"/>
+              <circle cx="600" cy="0" r="4" class="dot"/>
             </g>
             
           </svg>
