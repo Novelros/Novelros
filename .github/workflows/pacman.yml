@@ -50,7 +50,7 @@ jobs:
               }
               
               .dots-container {
-                animation: move-dots 5s infinite linear;
+                animation: move-dots 3s infinite linear;
               }
               
               .dot {
