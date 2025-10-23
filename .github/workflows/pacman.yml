@@ -25,13 +25,75 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Generate snake animation
-        uses: Platane/snk@v3
-        with:
-          github_user_name: ${{ github.repository_owner }}
-          outputs: |
-            dist/github-contribution-grid-snake.svg
-            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+      - name: Create Pacman SVG
+        run: |
+          mkdir -p dist
+          # Создаем анимированного Пакмена
+          cat > dist/github-contribution-grid-snake.svg << 'EOF'
+          <svg width="100%" height="100" xmlns="http://www.w3.org/2000/svg">
+            <style>
+              @keyframes pacman-mouth {
+                0%, 100% { clip-path: polygon(50% 50%, 100% 0%, 100% 100%); }
+                50% { clip-path: polygon(50% 50%, 100% 25%, 100% 75%); }
+              }
+              @keyframes dots-move {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-200px); }
+              }
+              .pacman {
+                animation: pacman-mouth 0.6s infinite;
+                fill: #FFD700;
+              }
+              .dots-container {
+                animation: dots-move 3s infinite linear;
+              }
+              .dot {
+                fill: #FFD700;
+              }
+            </style>
+            
+            <!-- Фон -->
+            <rect width="100%" height="100%" fill="#0d1117"/>
+            
+            <!-- Текст -->
+            <text x="50%" y="20" text-anchor="middle" fill="#FFD700" font-family="Arial" font-size="14">🎮 Pacman eats my contributions!</text>
+            
+            <!-- Пакмен -->
+            <g transform="translate(50, 50)">
+              <circle cx="0" cy="0" r="20" class="pacman"/>
+            </g>
+            
+            <!-- Точки которые ест Пакмен -->
+            <g class="dots-container" transform="translate(300, 50)">
+              <circle cx="0" cy="0" r="3" class="dot"/>
+              <circle cx="30" cy="0" r="3" class="dot"/>
+              <circle cx="60" cy="0" r="3" class="dot"/>
+              <circle cx="90" cy="0" r="3" class="dot"/>
+              <circle cx="120" cy="0" r="3" class="dot"/>
+              <circle cx="150" cy="0" r="3" class="dot"/>
+              <circle cx="180" cy="0" r="3" class="dot"/>
+            </g>
+            
+            <!-- Призраки -->
+            <g transform="translate(400, 45)">
+              <circle cx="0" cy="0" r="12" fill="#FF0000"/>
+              <rect x="-8" y="0" width="16" height="8" fill="#FF0000"/>
+              <circle cx="-4" cy="-3" r="2" fill="white"/>
+              <circle cx="4" cy="-3" r="2" fill="white"/>
+              <circle cx="-4" cy="-3" r="1" fill="black"/>
+              <circle cx="4" cy="-3" r="1" fill="black"/>
+            </g>
+            
+            <g transform="translate(450, 45)">
+              <circle cx="0" cy="0" r="12" fill="#00FFFF"/>
+              <rect x="-8" y="0" width="16" height="8" fill="#00FFFF"/>
+              <circle cx="-4" cy="-3" r="2" fill="white"/>
+              <circle cx="4" cy="-3" r="2" fill="white"/>
+              <circle cx="-4" cy="-3" r="1" fill="black"/>
+              <circle cx="4" cy="-3" r="1" fill="black"/>
+            </g>
+          </svg>
+          EOF
           
       - name: Deploy to output branch
         uses: peaceiris/actions-gh-pages@v3
@@ -40,4 +102,4 @@ jobs:
           publish_dir: ./dist
           publish_branch: output
           force_orphan: true
-          commit_message: "Update snake animation"
+          commit_message: "Update Pacman animation"
