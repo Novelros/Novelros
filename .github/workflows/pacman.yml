@@ -50,20 +50,20 @@ jobs:
               }
               
               .dots-container {
-                animation: move-dots 3s infinite linear;
+                animation: move-dots 2s infinite linear;
               }
               
               .dot {
                 fill: #FFD700;
               }
               
-              /* Точки исчезают через 3 секунд с интервалом 0.2s */
-              .dot:nth-child(1) { animation: dot-disappear 3s infinite 0.2s; }
-              .dot:nth-child(2) { animation: dot-disappear 3s infinite 0.4s; }
-              .dot:nth-child(3) { animation: dot-disappear 3s infinite 0.6s; }
-              .dot:nth-child(4) { animation: dot-disappear 3s infinite 0.8s; }
-              .dot:nth-child(5) { animation: dot-disappear 3s infinite 0.0s; }
-              .dot:nth-child(6) { animation: dot-disappear 3s infinite 1.2s; }
+              /* Точки исчезают через 2 секунд с интервалом 0.1s */
+              .dot:nth-child(1) { animation: dot-disappear 2s infinite 0.1s; }
+              .dot:nth-child(2) { animation: dot-disappear 2s infinite 0.2s; }
+              .dot:nth-child(3) { animation: dot-disappear 2s infinite 0.3s; }
+              .dot:nth-child(4) { animation: dot-disappear 2s infinite 0.4s; }
+              .dot:nth-child(5) { animation: dot-disappear 2s infinite 0.5s; }
+              .dot:nth-child(6) { animation: dot-disappear 2s infinite 0.6s; }
             </style>
             
             <!-- Фон -->
