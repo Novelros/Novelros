@@ -1,0 +1,70 @@
+name: Update Pacman Animation
+
+on:
+  schedule:
+    # Запускать каждые 6 часов
+    - cron: "0 */6 * * *"
+  
+  workflow_dispatch:
+  
+  push:
+    branches: [ main ]
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Generate Pacman animation
+        uses: athul/waka-readme@master
+        with:
+          WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
+          # Используем шаблон с Пакманом
+          SHOW_TITLE: false
+          TIME_RANGE: all_time
+          BLOCKS: ░▒▓█
+          TIME_FORMAT: none
+          LANG_COUNT: 0
+          SHOW_TIME: true
+          SHOW_TOTAL: true
+      
+      - name: Update README
+        run: |
+          cat << EOF > README.md
+# 👋 Привет, я Novelros!
+
+## 🎮 Обо мне
+Разработчик, который любит создавать крутые вещи!
+
+## 🕹️ Моя активность
+<!--START_SECTION:waka-->
+<!--END_SECTION:waka-->
+
+## 📊 Статистика GitHub
+
+<div align="center">
+  <img width="400" src="https://github-readme-stats.vercel.app/api?username=Novelros&show_icons=true&theme=radical" />
+  <img width="400" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Novelros&layout=compact&theme=radical" />
+</div>
+
+<div align="center">
+  <img width="800" src="https://raw.githubusercontent.com/Novelros/Novelros/main/generated/contributions.svg" alt="Pacman eating contributions" />
+</div>
+
+## 🏆 Трофеи
+![trophy](https://github-profile-trophy.vercel.app/?username=Novelros&theme=radical)
+
+## 🔥 Streak Stats
+[![GitHub Streak](https://streak-stats.demolab.com/?user=Novelros&theme=radical)](https://git.io/streak-stats)
+
+EOF
+
+      - name: Commit and push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          git commit -m "Update Pacman animation" || exit 0
+          git push
