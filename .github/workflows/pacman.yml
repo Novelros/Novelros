@@ -22,8 +22,8 @@ jobs:
           <svg width="100%" height="120" xmlns="http://www.w3.org/2000/svg">
             <style>
               @keyframes move-dots {
-                0% { transform: translateX(600px); }
-                100% { transform: translateX(-600px); }
+                0% { transform: translateX(500px); }
+                100% { transform: translateX(-500px); }
               }
               
               @keyframes eat-mouth {
@@ -50,20 +50,20 @@ jobs:
               }
               
               .dots-container {
-                animation: move-dots 6s infinite linear;
+                animation: move-dots 5s infinite linear;
               }
               
               .dot {
                 fill: #FFD700;
               }
               
-              /* Точки исчезают через 6 секунд с интервалом 0.5s */
-              .dot:nth-child(1) { animation: dot-disappear 6s infinite 0.5s; }
-              .dot:nth-child(2) { animation: dot-disappear 6s infinite 1.0s; }
-              .dot:nth-child(3) { animation: dot-disappear 6s infinite 1.5s; }
-              .dot:nth-child(4) { animation: dot-disappear 6s infinite 2.0s; }
-              .dot:nth-child(5) { animation: dot-disappear 6s infinite 2.5s; }
-              .dot:nth-child(6) { animation: dot-disappear 6s infinite 3.0s; }
+              /* Точки исчезают через 5 секунд с интервалом 0.5s */
+              .dot:nth-child(1) { animation: dot-disappear 5s infinite 0.5s; }
+              .dot:nth-child(2) { animation: dot-disappear 5s infinite 1.0s; }
+              .dot:nth-child(3) { animation: dot-disappear 5s infinite 1.5s; }
+              .dot:nth-child(4) { animation: dot-disappear 5s infinite 2.0s; }
+              .dot:nth-child(5) { animation: dot-disappear 5s infinite 2.5s; }
+              .dot:nth-child(6) { animation: dot-disappear 5s infinite 3.0s; }
             </style>
             
             <!-- Фон -->
@@ -75,10 +75,10 @@ jobs:
             </text>
             
             <!-- Дорожка -->
-            <line x1="50" y1="80" x2="750" y2="80" stroke="#333" stroke-width="2"/>
+            <line x1="50" y1="65" x2="750" y2="65" stroke="#333" stroke-width="2"/>
             
             <!-- Пакмен слева -->
-            <g transform="translate(100, 80)">
+            <g transform="translate(100, 65)">
               <!-- Желтое тело -->
               <circle cx="0" cy="0" r="20" class="pacman-body"/>
               <!-- Черный рот -->
@@ -87,8 +87,8 @@ jobs:
               <circle cx="-8" cy="-10" r="3" fill="#000"/>
             </g>
             
-            <!-- Точки на одном уровне с Пакменом -->
-            <g class="dots-container" transform="translate(0, 80)">
+            <!-- Точки центрированы по вертикали -->
+            <g class="dots-container" transform="translate(0, 65)">
               <circle cx="150" cy="0" r="5" class="dot"/>
               <circle cx="200" cy="0" r="5" class="dot"/>
               <circle cx="250" cy="0" r="5" class="dot"/>
@@ -114,4 +114,4 @@ jobs:
           publish_dir: ./dist
           publish_branch: output
           force_orphan: true
-          commit_message: "Update Pacman - synchronized animations"
+          commit_message: "Update Pacman - 5 seconds, centered dots"
