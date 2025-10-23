@@ -22,8 +22,8 @@ jobs:
           <svg width="100%" height="120" xmlns="http://www.w3.org/2000/svg">
             <style>
               @keyframes move-dots {
-                0% { transform: translateX(400px); }
-                100% { transform: translateX(-400px); }
+                0% { transform: translateX(600px); }
+                100% { transform: translateX(-600px); }
               }
               
               @keyframes eat-mouth {
@@ -36,8 +36,8 @@ jobs:
               }
               
               @keyframes dot-disappear {
-                0%, 80% { opacity: 1; transform: scale(1); }
-                90%, 100% { opacity: 0; transform: scale(0); }
+                0%, 90% { opacity: 1; transform: scale(1); }
+                95%, 100% { opacity: 0; transform: scale(0); }
               }
               
               .pacman-body {
@@ -45,26 +45,25 @@ jobs:
               }
               
               .pacman-mouth {
-                fill: #0d0000;
-                animation: eat-mouth 0.3s infinite;
+                fill: #0d1117;
+                animation: eat-mouth 0.4s infinite;
               }
               
               .dots-container {
-                animation: move-dots 4s infinite linear;
+                animation: move-dots 6s infinite linear;
               }
               
               .dot {
                 fill: #FFD700;
               }
               
-              /* Точки исчезают когда доходят до Пакмена */
-              .dot:nth-child(1) { animation: dot-disappear 4s infinite 0.5s; }
-              .dot:nth-child(2) { animation: dot-disappear 4s infinite 1.0s; }
-              .dot:nth-child(3) { animation: dot-disappear 4s infinite 1.5s; }
-              .dot:nth-child(4) { animation: dot-disappear 4s infinite 2.0s; }
-              .dot:nth-child(5) { animation: dot-disappear 4s infinite 2.5s; }
-              .dot:nth-child(6) { animation: dot-disappear 4s infinite 3.0s; }
-              .dot:nth-child(7) { animation: dot-disappear 4s infinite 3.5s; }
+              /* Точки исчезают через 6 секунд с интервалом 0.5s */
+              .dot:nth-child(1) { animation: dot-disappear 6s infinite 0.5s; }
+              .dot:nth-child(2) { animation: dot-disappear 6s infinite 1.0s; }
+              .dot:nth-child(3) { animation: dot-disappear 6s infinite 1.5s; }
+              .dot:nth-child(4) { animation: dot-disappear 6s infinite 2.0s; }
+              .dot:nth-child(5) { animation: dot-disappear 6s infinite 2.5s; }
+              .dot:nth-child(6) { animation: dot-disappear 6s infinite 3.0s; }
             </style>
             
             <!-- Фон -->
@@ -88,17 +87,14 @@ jobs:
               <circle cx="-8" cy="-10" r="3" fill="#000"/>
             </g>
             
-            <!-- Точки двигаются справа налево через центр -->
+            <!-- Точки на одном уровне с Пакменом -->
             <g class="dots-container" transform="translate(0, 80)">
-              <circle cx="200" cy="0" r="4" class="dot"/>
-              <circle cx="250" cy="0" r="4" class="dot"/>
-              <circle cx="300" cy="0" r="4" class="dot"/>
-              <circle cx="350" cy="0" r="4" class="dot"/>
-              <circle cx="400" cy="0" r="4" class="dot"/>
-              <circle cx="450" cy="0" r="4" class="dot"/>
-              <circle cx="500" cy="0" r="4" class="dot"/>
-              <circle cx="550" cy="0" r="4" class="dot"/>
-              <circle cx="600" cy="0" r="4" class="dot"/>
+              <circle cx="150" cy="0" r="5" class="dot"/>
+              <circle cx="200" cy="0" r="5" class="dot"/>
+              <circle cx="250" cy="0" r="5" class="dot"/>
+              <circle cx="300" cy="0" r="5" class="dot"/>
+              <circle cx="350" cy="0" r="5" class="dot"/>
+              <circle cx="400" cy="0" r="5" class="dot"/>
             </g>
             
           </svg>
@@ -118,4 +114,4 @@ jobs:
           publish_dir: ./dist
           publish_branch: output
           force_orphan: true
-          commit_message: "Update Pacman - left position"
+          commit_message: "Update Pacman - synchronized animations"
