@@ -2,7 +2,7 @@ name: Generate Pacman
 
 on:
   schedule:
-    - cron: "0 */6 * * *"
+    - cron: "0 12 * * *"
   workflow_dispatch:
   push:
     branches: [ main ]
@@ -10,32 +10,34 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      
     steps:
-      - name: Checkout main
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          
-      - name: Checkout output branch
+          fetch-depth: 0
+
+      - name: Setup Git
         run: |
-          git fetch
-          git checkout output 2>/dev/null || git checkout --orphan output
-          git reset --hard
-          
-      - name: Generate real snake animation (looks like Pacman)
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Generate snake animation
         uses: Platane/snk@v3
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
-            github-contribution-grid-snake.svg
-            github-contribution-grid-snake-dark.svg?palette=github-dark
-          gif_out_path: github-contribution-grid-snake.gif
-          svg_out_path: github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
           
-      - name: Commit and push
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add -A
-          git commit -m "Update Pacman animation" || exit 0
-          git push origin output --force
+      - name: Deploy to output branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: output
+          force_orphan: true
+          commit_message: "Update snake animation"
