@@ -75,7 +75,7 @@ jobs:
             </text>
             
             <!-- Пакмен слева -->
-            <g transform="translate(100, 65)">
+            <g transform="translate(150, 65)">
               <!-- Желтое тело -->
               <circle cx="-30" cy="0" r="20" class="pacman-body"/>
               <!-- Черный рот -->
