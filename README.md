@@ -1,5 +1,4 @@
-## 📊 Статистика GitHub
-
+<img align="right" src="https://visitor-badge.laobi.icu/badge?page_id=salesp07.salesp07" />
 <div align="center">
 
 [![Habr](https://img.shields.io/badge/Habr-77A2B6?style=for-the-badge&logo=habr&logoColor=white)](https://habr.com/ru/users/Laborant_Code/articles/)
