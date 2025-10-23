@@ -84,14 +84,14 @@ jobs:
               <circle cx="-8" cy="-10" r="3" fill="#000"/>
             </g>
             
-            <!-- Точки центрированы по вертикали -->
-            <g class="dots-container" transform="translate(0, 32.5)">
-              <circle cx="150" cy="0" r="5" class="dot"/>
-              <circle cx="200" cy="0" r="5" class="dot"/>
-              <circle cx="250" cy="0" r="5" class="dot"/>
-              <circle cx="300" cy="0" r="5" class="dot"/>
-              <circle cx="350" cy="0" r="5" class="dot"/>
-              <circle cx="400" cy="0" r="5" class="dot"/>
+            <!-- Точки с абсолютными координатами -->
+            <g class="dots-container">
+              <circle cx="150" cy="65" r="5" class="dot"/>
+              <circle cx="200" cy="65" r="5" class="dot"/>
+              <circle cx="250" cy="65" r="5" class="dot"/>
+              <circle cx="300" cy="65" r="5" class="dot"/>
+              <circle cx="350" cy="65" r="5" class="dot"/>
+              <circle cx="400" cy="65" r="5" class="dot"/>
             </g>
             
           </svg>
