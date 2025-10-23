@@ -1,6 +1,8 @@
-name: Simple Pacman
+name: Generate Pacman
 
 on:
+  schedule:
+    - cron: "0 12 * * *"
   workflow_dispatch:
 
 jobs:
@@ -10,38 +12,98 @@ jobs:
       contents: write
       
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Create simple pacman
+      - name: Create Pacman SVG
         run: |
-          cat > pacman-simple.svg << 'EOF'
-          <svg width="100%" height="80" xmlns="http://www.w3.org/2000/svg">
+          mkdir -p dist
+          cat > dist/pacman.svg << 'EOF'
+          <svg width="100%" height="120" xmlns="http://www.w3.org/2000/svg">
             <style>
-              @keyframes move { 0% { transform: translateX(100%); } 100% { transform: translateX(-100px); } }
-              @keyframes mouth { 0%,100% { clip-path: polygon(50% 50%, 100% 0, 100% 100%); } 50% { clip-path: polygon(50% 50%, 100% 20%, 100% 80%); } }
-              .container { animation: move 4s infinite linear; }
-              .pacman { animation: mouth 0.4s infinite; fill: #FFD700; }
-              .dots { animation: move 4s infinite linear; }
+              @keyframes move-pacman {
+                0% { transform: translateX(800px); }
+                100% { transform: translateX(-100px); }
+              }
+              
+              @keyframes eat-mouth {
+                0%, 100% { 
+                  clip-path: polygon(50% 50%, 100% 0%, 100% 100%);
+                }
+                50% { 
+                  clip-path: polygon(50% 50%, 100% 25%, 100% 75%);
+                }
+              }
+              
+              @keyframes move-dots {
+                0% { transform: translateX(800px); }
+                100% { transform: translateX(-100px); }
+              }
+              
+              .pacman-container {
+                animation: move-pacman 5s infinite linear;
+              }
+              
+              .pacman-body {
+                fill: #FFD700;
+                animation: eat-mouth 0.3s infinite;
+              }
+              
+              .dots-container {
+                animation: move-dots 5s infinite linear;
+              }
+              
+              .dot {
+                fill: #FFD700;
+              }
             </style>
+            
+            <!-- Фон -->
             <rect width="100%" height="100%" fill="#0d1117"/>
-            <g class="dots">
-              <circle cx="50" cy="40" r="3" fill="#FFD700"/>
-              <circle cx="80" cy="40" r="3" fill="#FFD700"/>
-              <circle cx="110" cy="40" r="3" fill="#FFD700"/>
-              <circle cx="140" cy="40" r="3" fill="#FFD700"/>
-              <circle cx="170" cy="40" r="3" fill="#FFD700"/>
-              <circle cx="200" cy="40" r="3" fill="#FFD700"/>
+            
+            <!-- Заголовок -->
+            <text x="50%" y="25" text-anchor="middle" fill="#FFD700" font-family="Arial" font-size="16" font-weight="bold">
+              🎮 Pacman Animation
+            </text>
+            
+            <!-- Дорожка -->
+            <line x1="50" y1="80" x2="750" y2="80" stroke="#333" stroke-width="2"/>
+            
+            <!-- Точки -->
+            <g class="dots-container">
+              <circle cx="100" cy="80" r="4" class="dot"/>
+              <circle cx="140" cy="80" r="4" class="dot"/>
+              <circle cx="180" cy="80" r="4" class="dot"/>
+              <circle cx="220" cy="80" r="4" class="dot"/>
+              <circle cx="260" cy="80" r="4" class="dot"/>
+              <circle cx="300" cy="80" r="4" class="dot"/>
+              <circle cx="340" cy="80" r="4" class="dot"/>
+              <circle cx="380" cy="80" r="4" class="dot"/>
+              <circle cx="420" cy="80" r="4" class="dot"/>
+              <circle cx="460" cy="80" r="4" class="dot"/>
+              <circle cx="500" cy="80" r="4" class="dot"/>
+              <circle cx="540" cy="80" r="4" class="dot"/>
+              <circle cx="580" cy="80" r="4" class="dot"/>
+              <circle cx="620" cy="80" r="4" class="dot"/>
+              <circle cx="660" cy="80" r="4" class="dot"/>
+              <circle cx="700" cy="80" r="4" class="dot"/>
             </g>
-            <g class="container">
-              <circle cx="30" cy="40" r="15" class="pacman"/>
+            
+            <!-- Пакмен -->
+            <g class="pacman-container">
+              <circle cx="50" cy="80" r="20" class="pacman-body"/>
+              <!-- Глаз -->
+              <circle cx="40" cy="70" r="3" fill="#000"/>
             </g>
+            
           </svg>
           EOF
           
-      - name: Deploy
+      - name: Deploy to output branch
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
           publish_branch: output
-          keep_files: false
+          force_orphan: true
+          commit_message: "Update Pacman animation"
