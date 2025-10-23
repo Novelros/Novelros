@@ -11,48 +11,31 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout main
         uses: actions/checkout@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           
-      - name: Generate Pacman animation
-        uses: jstrieb/github-activity-readme@master
-        with:
-          # Используем символы Пакмана вместо змейки
-          commit_message: "Update Pacman animation"
-          max_lines: 10
-          
-      - name: Setup output branch
+      - name: Checkout output branch
         run: |
-          git checkout --orphan output || git checkout output
+          git fetch
+          git checkout output 2>/dev/null || git checkout --orphan output
           git reset --hard
           
-      - name: Create Pacman SVG
-        run: |
-          cat > github-contribution-grid-snake.svg << 'EOF'
-          <svg width="100%" height="100" xmlns="http://www.w3.org/2000/svg">
-            <style>
-              .pacman { 
-                animation: eat 0.8s infinite;
-                transform-origin: center;
-              }
-              @keyframes eat {
-                0%, 100% { transform: rotate(0deg); }
-                50% { transform: rotate(-35deg); }
-              }
-            </style>
-            <rect width="100%" height="100%" fill="#0d1117"/>
-            <text x="50%" y="30" text-anchor="middle" fill="#ffd700" font-family="Arial" font-size="16">🎮 Pacman eats my contributions!</text>
-            <circle cx="50" cy="70" r="20" fill="#ffd700" class="pacman"/>
-            <text x="90" y="75" fill="#ffffff" font-family="Arial" font-size="12">Nom nom nom...</text>
-          </svg>
-          EOF
+      - name: Generate real snake animation (looks like Pacman)
+        uses: Platane/snk@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            github-contribution-grid-snake.svg
+            github-contribution-grid-snake-dark.svg?palette=github-dark
+          gif_out_path: github-contribution-grid-snake.gif
+          svg_out_path: github-contribution-grid-snake.svg
           
-      - name: Commit and push Pacman
+      - name: Commit and push
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add .
+          git add -A
           git commit -m "Update Pacman animation" || exit 0
           git push origin output --force
