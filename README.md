@@ -11,7 +11,5 @@
   <br/>
 </div>
 
-
-### Пакмен ест точки
 ![Pacman](https://raw.githubusercontent.com/Novelros/Novelros/output/pacman.svg)
 </div>
