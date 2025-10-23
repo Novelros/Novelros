@@ -57,13 +57,13 @@ jobs:
                 fill: #FFD700;
               }
               
-              /* Точки исчезают через 5 секунд с интервалом 0.5s */
-              .dot:nth-child(1) { animation: dot-disappear 5s infinite 0.5s; }
-              .dot:nth-child(2) { animation: dot-disappear 5s infinite 1.0s; }
-              .dot:nth-child(3) { animation: dot-disappear 5s infinite 1.5s; }
-              .dot:nth-child(4) { animation: dot-disappear 5s infinite 2.0s; }
-              .dot:nth-child(5) { animation: dot-disappear 5s infinite 2.5s; }
-              .dot:nth-child(6) { animation: dot-disappear 5s infinite 3.0s; }
+              /* Точки исчезают через 3 секунд с интервалом 0.2s */
+              .dot:nth-child(1) { animation: dot-disappear 3s infinite 0.2s; }
+              .dot:nth-child(2) { animation: dot-disappear 3s infinite 0.4s; }
+              .dot:nth-child(3) { animation: dot-disappear 3s infinite 0.6s; }
+              .dot:nth-child(4) { animation: dot-disappear 3s infinite 0.8s; }
+              .dot:nth-child(5) { animation: dot-disappear 3s infinite 0.0s; }
+              .dot:nth-child(6) { animation: dot-disappear 3s infinite 1.2s; }
             </style>
             
             <!-- Фон -->
