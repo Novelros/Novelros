@@ -2,7 +2,7 @@
 
 [![Habr](https://img.shields.io/badge/Habr-77A2B6?style=for-the-badge&logo=habr&logoColor=white)](https://habr.com/ru/users/Laborant_Code/articles/)
 
-<h2 align="center">⚡ Stats ⚡</h2>
+<h2 align="center">Stats </h2>
 
 
 <div align=center>
@@ -13,6 +13,6 @@
 </div>
 
 
-### 🕹️ Анимированный Пакмен
+### Пакмен ест точки
 ![Pacman](https://raw.githubusercontent.com/Novelros/Novelros/output/pacman.svg)
 </div>
