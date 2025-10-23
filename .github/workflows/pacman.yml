@@ -45,7 +45,7 @@ jobs:
               }
               
               .pacman-mouth {
-                fill: #0d1117;
+                fill: #0d0000;
                 animation: eat-mouth 0.4s infinite;
               }
               
@@ -67,15 +67,12 @@ jobs:
             </style>
             
             <!-- Фон -->
-            <rect width="100%" height="100%" fill="#0d1117"/>
+            <rect width="100%" height="100%" fill="#0d0000"/>
             
             <!-- Заголовок -->
-            <text x="50%" y="25" text-anchor="middle" fill="#FFD700" font-family="Arial" font-size="16" font-weight="bold">
+            <text x="50%" y="25" text-anchor="middle" fill="#FFD700" font-family="Times New Roman" font-size="16" font-weight="bold">
               🎮 Pacman Eating Dots
             </text>
-            
-            <!-- Дорожка -->
-            <line x1="50" y1="65" x2="750" y2="65" stroke="#333" stroke-width="2"/>
             
             <!-- Пакмен слева -->
             <g transform="translate(100, 65)">
@@ -88,7 +85,7 @@ jobs:
             </g>
             
             <!-- Точки центрированы по вертикали -->
-            <g class="dots-container" transform="translate(0, 65)">
+            <g class="dots-container" transform="translate(0, 32.5)">
               <circle cx="150" cy="0" r="5" class="dot"/>
               <circle cx="200" cy="0" r="5" class="dot"/>
               <circle cx="250" cy="0" r="5" class="dot"/>
@@ -100,13 +97,6 @@ jobs:
           </svg>
           EOF
           
-      - name: Generate snake animation as fallback
-        uses: Platane/snk@v3
-        with:
-          github_user_name: ${{ github.repository_owner }}
-          outputs: |
-            dist/github-contribution-grid-snake.gif?color_snake=orange&color_dots=#bfd6f6,#8dbdff,#64a1f4,#4b91f1,#3c7dd9
-          
       - name: Deploy to output branch
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -114,4 +104,4 @@ jobs:
           publish_dir: ./dist
           publish_branch: output
           force_orphan: true
-          commit_message: "Update Pacman - 5 seconds, centered dots"
+          commit_message: "Update Pacman animation"
