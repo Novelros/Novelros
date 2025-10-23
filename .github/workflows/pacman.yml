@@ -1,4 +1,4 @@
-name: Generate Pacman
+name: Generate Pacman GIF
 
 on:
   schedule:
@@ -15,95 +15,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Create Pacman SVG
-        run: |
-          mkdir -p dist
-          cat > dist/pacman.svg << 'EOF'
-          <svg width="100%" height="120" xmlns="http://www.w3.org/2000/svg">
-            <style>
-              @keyframes move-dots {
-                0% { transform: translateX(400px); }
-                100% { transform: translateX(-400px); }
-              }
-              
-              @keyframes eat-mouth {
-                0%, 100% { 
-                  clip-path: polygon(50% 50%, 100% 20%, 100% 80%);
-                }
-                50% { 
-                  clip-path: polygon(50% 50%, 100% 0%, 100% 100%);
-                }
-              }
-              
-              @keyframes dot-disappear {
-                0%, 80% { opacity: 1; transform: scale(1); }
-                90%, 100% { opacity: 0; transform: scale(0); }
-              }
-              
-              .pacman-body {
-                fill: #FFD700;
-              }
-              
-              .pacman-mouth {
-                fill: #0d1117;
-                animation: eat-mouth 0.4s infinite;
-              }
-              
-              .dots-container {
-                animation: move-dots 4s infinite linear;
-              }
-              
-              .dot {
-                fill: #FFD700;
-              }
-              
-              /* Точки исчезают когда доходят до центра */
-              .dot:nth-child(1) { animation: dot-disappear 4s infinite 0.5s; }
-              .dot:nth-child(2) { animation: dot-disappear 4s infinite 1.0s; }
-              .dot:nth-child(3) { animation: dot-disappear 4s infinite 1.5s; }
-              .dot:nth-child(4) { animation: dot-disappear 4s infinite 2.0s; }
-              .dot:nth-child(5) { animation: dot-disappear 4s infinite 2.5s; }
-              .dot:nth-child(6) { animation: dot-disappear 4s infinite 3.0s; }
-              .dot:nth-child(7) { animation: dot-disappear 4s infinite 3.5s; }
-            </style>
-            
-            <!-- Фон -->
-            <rect width="100%" height="100%" fill="#0d1117"/>
-            
-            <!-- Заголовок -->
-            <text x="50%" y="25" text-anchor="middle" fill="#FFD700" font-family="Arial" font-size="16" font-weight="bold">
-              🎮 Pacman Eating Dots
-            </text>
-            
-            <!-- Дорожка -->
-            <line x1="50" y1="80" x2="750" y2="80" stroke="#333" stroke-width="2"/>
-            
-            <!-- Пакмен по центру -->
-            <g transform="translate(400, 80)">
-              <!-- Желтое тело -->
-              <circle cx="0" cy="0" r="20" class="pacman-body"/>
-              <!-- Черный рот -->
-              <circle cx="0" cy="0" r="20" class="pacman-mouth"/>
-              <!-- Глаз -->
-              <circle cx="-8" cy="-10" r="3" fill="#000"/>
-            </g>
-            
-            <!-- Точки двигаются справа налево через центр -->
-            <g class="dots-container" transform="translate(0, 80)">
-              <circle cx="450" cy="0" r="5" class="dot"/>
-              <circle cx="500" cy="0" r="5" class="dot"/>
-              <circle cx="550" cy="0" r="5" class="dot"/>
-              <circle cx="600" cy="0" r="5" class="dot"/>
-              <circle cx="650" cy="0" r="5" class="dot"/>
-              <circle cx="700" cy="0" r="5" class="dot"/>
-              <circle cx="750" cy="0" r="5" class="dot"/>
-            </g>
-            
-            <!-- Маркер центра (для отладки, можно удалить) -->
-            <circle cx="400" cy="80" r="3" fill="red" opacity="0.5"/>
-            
-          </svg>
-          EOF
+      - name: Generate snake animation (будем использовать как основу)
+        uses: Platane/snk@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/github-contribution-grid-snake.gif?color_snake=orange&color_dots=#bfd6f6,#8dbdff,#64a1f4,#4b91f1,#3c7dd9
           
       - name: Deploy to output branch
         uses: peaceiris/actions-gh-pages@v3
@@ -112,4 +29,4 @@ jobs:
           publish_dir: ./dist
           publish_branch: output
           force_orphan: true
-          commit_message: "Update Pacman animatiod"
+          commit_message: "Update animation"
