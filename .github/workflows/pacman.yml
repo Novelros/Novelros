@@ -21,7 +21,7 @@ jobs:
           cat > dist/pacman.svg << 'EOF'
           <svg width="100%" height="120" xmlns="http://www.w3.org/2000/svg">
             <style>
-              @keyframes move-pacman {
+              @keyframes move-dots {
                 0% { transform: translateX(800px); }
                 100% { transform: translateX(-100px); }
               }
@@ -35,27 +35,38 @@ jobs:
                 }
               }
               
-              @keyframes move-dots {
-                0% { transform: translateX(800px); }
-                100% { transform: translateX(-100px); }
-              }
-              
-              .pacman-container {
-                animation: move-pacman 5s infinite linear;
+              @keyframes dot-disappear {
+                0%, 90% { opacity: 1; r: 4; }
+                95%, 100% { opacity: 0; r: 0; }
               }
               
               .pacman-body {
-                fill: #FFD700;
+                fill: #FFD700; /* Все тело желтое */
+              }
+              
+              .pacman-mouth {
+                fill: #0d1117; /* Рот черный */
                 animation: eat-mouth 0.3s infinite;
               }
               
               .dots-container {
-                animation: move-dots 5s infinite linear;
+                animation: move-dots 3s infinite linear;
               }
               
               .dot {
                 fill: #FFD700;
               }
+              
+              /* Каждая точка исчезает когда доходит до Пакмена */
+              .dot:nth-child(1) { animation: dot-disappear 3s infinite 0.3s; }
+              .dot:nth-child(2) { animation: dot-disappear 3s infinite 0.6s; }
+              .dot:nth-child(3) { animation: dot-disappear 3s infinite 0.9s; }
+              .dot:nth-child(4) { animation: dot-disappear 3s infinite 1.2s; }
+              .dot:nth-child(5) { animation: dot-disappear 3s infinite 1.5s; }
+              .dot:nth-child(6) { animation: dot-disappear 3s infinite 1.8s; }
+              .dot:nth-child(7) { animation: dot-disappear 3s infinite 2.1s; }
+              .dot:nth-child(8) { animation: dot-disappear 3s infinite 2.4s; }
+              .dot:nth-child(9) { animation: dot-disappear 3s infinite 2.7s; }
             </style>
             
             <!-- Фон -->
@@ -63,37 +74,33 @@ jobs:
             
             <!-- Заголовок -->
             <text x="50%" y="25" text-anchor="middle" fill="#FFD700" font-family="Arial" font-size="16" font-weight="bold">
-              🎮 Pacman Animation
+              🎮 Pacman Eating Dots
             </text>
             
             <!-- Дорожка -->
             <line x1="50" y1="80" x2="750" y2="80" stroke="#333" stroke-width="2"/>
             
-            <!-- Точки -->
-            <g class="dots-container">
-              <circle cx="100" cy="80" r="4" class="dot"/>
-              <circle cx="140" cy="80" r="4" class="dot"/>
-              <circle cx="180" cy="80" r="4" class="dot"/>
-              <circle cx="220" cy="80" r="4" class="dot"/>
-              <circle cx="260" cy="80" r="4" class="dot"/>
-              <circle cx="300" cy="80" r="4" class="dot"/>
-              <circle cx="340" cy="80" r="4" class="dot"/>
-              <circle cx="380" cy="80" r="4" class="dot"/>
-              <circle cx="420" cy="80" r="4" class="dot"/>
-              <circle cx="460" cy="80" r="4" class="dot"/>
-              <circle cx="500" cy="80" r="4" class="dot"/>
-              <circle cx="540" cy="80" r="4" class="dot"/>
-              <circle cx="580" cy="80" r="4" class="dot"/>
-              <circle cx="620" cy="80" r="4" class="dot"/>
-              <circle cx="660" cy="80" r="4" class="dot"/>
-              <circle cx="700" cy="80" r="4" class="dot"/>
+            <!-- Пакмен (стоит на месте) -->
+            <g transform="translate(100, 80)">
+              <!-- Желтое тело -->
+              <circle cx="0" cy="0" r="20" class="pacman-body"/>
+              <!-- Черный рот (двигается) -->
+              <circle cx="0" cy="0" r="20" class="pacman-mouth"/>
+              <!-- Глаз -->
+              <circle cx="-8" cy="-10" r="3" fill="#000"/>
             </g>
             
-            <!-- Пакмен -->
-            <g class="pacman-container">
-              <circle cx="50" cy="80" r="20" class="pacman-body"/>
-              <!-- Глаз -->
-              <circle cx="40" cy="70" r="3" fill="#000"/>
+            <!-- Точки (двигаются к Пакмену) -->
+            <g class="dots-container" transform="translate(0, 80)">
+              <circle cx="200" cy="0" r="4" class="dot"/>
+              <circle cx="250" cy="0" r="4" class="dot"/>
+              <circle cx="300" cy="0" r="4" class="dot"/>
+              <circle cx="350" cy="0" r="4" class="dot"/>
+              <circle cx="400" cy="0" r="4" class="dot"/>
+              <circle cx="450" cy="0" r="4" class="dot"/>
+              <circle cx="500" cy="0" r="4" class="dot"/>
+              <circle cx="550" cy="0" r="4" class="dot"/>
+              <circle cx="600" cy="0" r="4" class="dot"/>
             </g>
             
           </svg>
