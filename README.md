@@ -5,7 +5,6 @@
 [![Habr](https://img.shields.io/badge/Habr-77A2B6?style=for-the-badge&logo=habr&logoColor=white)](https://habr.com/ru/users/Laborant_Code/articles/)
 
 ### 🏆 Профиль
-<img height="165em" src="https://github-readme-stats.vercel.app/api?username=Novelros&show_icons=true&theme=dark&count_private=true&include_all_commits=true" />
 <img height="165em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Novelros&layout=compact&theme=dark&langs_count=8&hide=html,css" />
 
 ### 🎯 Активность
