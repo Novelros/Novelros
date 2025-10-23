@@ -1,11 +1,7 @@
-name: Generate Pacman
+name: Simple Pacman
 
 on:
-  schedule:
-    - cron: "0 12 * * *"
   workflow_dispatch:
-  push:
-    branches: [ main ]
 
 jobs:
   build:
@@ -14,116 +10,38 @@ jobs:
       contents: write
       
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create directories and Pacman SVG
+      - name: Create simple pacman
         run: |
-          mkdir -p dist
-          # Создаем анимированного Пакмена
-          cat > dist/github-contribution-grid-snake.svg << 'EOF'
-          <svg width="100%" height="150" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          cat > pacman-simple.svg << 'EOF'
+          <svg width="100%" height="80" xmlns="http://www.w3.org/2000/svg">
             <style>
-              @keyframes pacman-mouth {
-                0%, 100% { 
-                  clip-path: polygon(50% 50%, 100% 0%, 100% 100%);
-                }
-                50% { 
-                  clip-path: polygon(50% 50%, 100% 30%, 100% 70%);
-                }
-              }
-              @keyframes dots-move {
-                0% { transform: translateX(0); }
-                100% { transform: translateX(-500px); }
-              }
-              @keyframes ghost-float {
-                0%, 100% { transform: translateY(0); }
-                50% { transform: translateY(-5px); }
-              }
-              .pacman {
-                animation: pacman-mouth 0.4s infinite;
-                fill: #FFD700;
-              }
-              .dots-container {
-                animation: dots-move 4s infinite linear;
-              }
-              .dot {
-                fill: #FFD700;
-                opacity: 0.7;
-              }
-              .ghost {
-                animation: ghost-float 2s infinite ease-in-out;
-              }
-              .ghost-red { fill: #FF0000; }
-              .ghost-pink { fill: #FFB8FF; }
-              .ghost-blue { fill: #00FFFF; }
-              .ghost-orange { fill: #FFB852; }
+              @keyframes move { 0% { transform: translateX(100%); } 100% { transform: translateX(-100px); } }
+              @keyframes mouth { 0%,100% { clip-path: polygon(50% 50%, 100% 0, 100% 100%); } 50% { clip-path: polygon(50% 50%, 100% 20%, 100% 80%); } }
+              .container { animation: move 4s infinite linear; }
+              .pacman { animation: mouth 0.4s infinite; fill: #FFD700; }
+              .dots { animation: move 4s infinite linear; }
             </style>
-            
-            <!-- Фон -->
             <rect width="100%" height="100%" fill="#0d1117"/>
-            
-            <!-- Заголовок -->
-            <text x="50%" y="25" text-anchor="middle" fill="#FFD700" font-family="Arial" font-size="16" font-weight="bold">
-              🎮 Pacman is eating my contributions!
-            </text>
-            
-            <!-- Пакмен -->
-            <g transform="translate(80, 70)">
-              <circle cx="0" cy="0" r="25" class="pacman"/>
-              <!-- Глаз -->
-              <circle cx="-8" cy="-10" r="4" fill="#000"/>
+            <g class="dots">
+              <circle cx="50" cy="40" r="3" fill="#FFD700"/>
+              <circle cx="80" cy="40" r="3" fill="#FFD700"/>
+              <circle cx="110" cy="40" r="3" fill="#FFD700"/>
+              <circle cx="140" cy="40" r="3" fill="#FFD700"/>
+              <circle cx="170" cy="40" r="3" fill="#FFD700"/>
+              <circle cx="200" cy="40" r="3" fill="#FFD700"/>
             </g>
-            
-            <!-- Точки которые ест Пакмен -->
-            <g class="dots-container" transform="translate(200, 70)">
-              <circle cx="0" cy="0" r="4" class="dot"/>
-              <circle cx="25" cy="0" r="4" class="dot"/>
-              <circle cx="50" cy="0" r="4" class="dot"/>
-              <circle cx="75" cy="0" r="4" class="dot"/>
-              <circle cx="100" cy="0" r="4" class="dot"/>
-              <circle cx="125" cy="0" r="4" class="dot"/>
-              <circle cx="150" cy="0" r="4" class="dot"/>
-              <circle cx="175" cy="0" r="4" class="dot"/>
-              <circle cx="200" cy="0" r="4" class="dot"/>
-              <circle cx="225" cy="0" r="4" class="dot"/>
+            <g class="container">
+              <circle cx="30" cy="40" r="15" class="pacman"/>
             </g>
-            
-            <!-- Призраки -->
-            <g class="ghost" transform="translate(450, 65)">
-              <circle cx="0" cy="0" r="15" class="ghost-red"/>
-              <rect x="-12" y="0" width="24" height="12" class="ghost-red"/>
-              <circle cx="-5" cy="-5" r="3" fill="white"/>
-              <circle cx="5" cy="-5" r="3" fill="white"/>
-              <circle cx="-5" cy="-5" r="1.5" fill="black"/>
-              <circle cx="5" cy="-5" r="1.5" fill="black"/>
-            </g>
-            
-            <g class="ghost" transform="translate(500, 65)" style="animation-delay: 0.5s;">
-              <circle cx="0" cy="0" r="15" class="ghost-pink"/>
-              <rect x="-12" y="0" width="24" height="12" class="ghost-pink"/>
-              <circle cx="-5" cy="-5" r="3" fill="white"/>
-              <circle cx="5" cy="-5" r="3" fill="white"/>
-              <circle cx="-5" cy="-5" r="1.5" fill="black"/>
-              <circle cx="5" cy="-5" r="1.5" fill="black"/>
-            </g>
-            
-            <!-- Статистика -->
-            <text x="50%" y="120" text-anchor="middle" fill="#8b949e" font-family="Arial" font-size="12">
-              Contributions made: 🟡 Commits • 🔴 Issues • 🔵 Pull Requests
-            </text>
-            
           </svg>
           EOF
-          echo "Pacman SVG created successfully!"
           
-      - name: Deploy to output branch
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
           publish_branch: output
-          force_orphan: true
-          commit_message: "Update Pacman animation - $(date)"
+          keep_files: false
