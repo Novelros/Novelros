@@ -1,0 +1,76 @@
+<svg width="100%" height="120" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @keyframes move-dots {
+      0% { transform: translateX(500px); }
+      100% { transform: translateX(-500px); }
+    }
+    
+    @keyframes eat-mouth {
+      0%, 100% { 
+        clip-path: polygon(50% 50%, 100% 20%, 100% 80%);
+      }
+      50% { 
+        clip-path: polygon(50% 50%, 100% 0%, 100% 100%);
+      }
+    }
+    
+    @keyframes dot-disappear {
+      0%, 90% { opacity: 1; transform: scale(1); }
+      95%, 100% { opacity: 0; transform: scale(0); }
+    }
+    
+    .pacman-body {
+      fill: #FFD700;
+    }
+    
+    .pacman-mouth {
+      fill: #0d0000;
+      animation: eat-mouth 0.4s infinite;
+    }
+    
+    .dots-container {
+      animation: move-dots 2s infinite linear;
+    }
+    
+    .dot {
+      fill: #FFD700;
+    }
+    
+    /* Точки исчезают через 2 секунд с интервалом 0.1s */
+    .dot:nth-child(1) { animation: dot-disappear 2s infinite 0.1s; }
+    .dot:nth-child(2) { animation: dot-disappear 2s infinite 0.2s; }
+    .dot:nth-child(3) { animation: dot-disappear 2s infinite 0.3s; }
+    .dot:nth-child(4) { animation: dot-disappear 2s infinite 0.4s; }
+    .dot:nth-child(5) { animation: dot-disappear 2s infinite 0.5s; }
+    .dot:nth-child(6) { animation: dot-disappear 2s infinite 0.6s; }
+  </style>
+  
+  <!-- Фон -->
+  <rect width="100%" height="100%" fill="#0d0000"/>
+  
+  <!-- Заголовок -->
+  <text x="50%" y="25" text-anchor="middle" fill="#FFD700" font-family="Times New Roman" font-size="16" font-weight="bold">
+    🎮 Pacman Eating Dots
+  </text>
+  
+  <!-- Пакмен слева -->
+  <g transform="translate(150, 65)">
+    <!-- Желтое тело -->
+    <circle cx="-30" cy="0" r="20" class="pacman-body"/>
+    <!-- Черный рот -->
+    <circle cx="-30" cy="0" r="20" class="pacman-mouth"/>
+    <!-- Глаз -->
+    <circle cx="-38" cy="-10" r="3" fill="#000"/>
+  </g>
+  
+  <!-- Точки с абсолютными координатами -->
+  <g class="dots-container">
+    <circle cx="150" cy="65" r="5" class="dot"/>
+    <circle cx="200" cy="65" r="5" class="dot"/>
+    <circle cx="250" cy="65" r="5" class="dot"/>
+    <circle cx="300" cy="65" r="5" class="dot"/>
+    <circle cx="350" cy="65" r="5" class="dot"/>
+    <circle cx="400" cy="65" r="5" class="dot"/>
+  </g>
+  
+</svg>
