@@ -1,0 +1,39 @@
+<svg width="390" height="190" viewBox="0 0 390 190" xmlns="http://www.w3.org/2000/svg">
+  <title>Top languages</title>
+  <defs>
+    <clipPath id="language-bar">
+      <rect x="20" y="48" width="350" height="10" rx="5"/>
+    </clipPath>
+  </defs>
+  <rect x="0.5" y="0.5" width="389" height="189" rx="10" fill="#20232a" stroke="#30363d"/>
+  <text x="20" y="30" fill="#61dafb" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="600">Top Languages</text>
+  <g clip-path="url(#language-bar)">
+    <rect x="20" y="48" width="153.2" height="10" fill="#f1e05a"/>
+    <rect x="173.2" y="48" width="78.7" height="10" fill="#3572a5"/>
+    <rect x="251.9" y="48" width="45.1" height="10" fill="#f7523f"/>
+    <rect x="297" y="48" width="36.6" height="10" fill="#663399"/>
+    <rect x="333.6" y="48" width="36.3" height="10" fill="#4f5d95"/>
+    <rect x="369.9" y="48" width="0.1" height="10" fill="#c6538c"/>
+  </g>
+  <g font-family="Segoe UI, Arial, sans-serif" font-size="13">
+    <circle cx="24" cy="82" r="5" fill="#f1e05a"/>
+    <text x="36" y="87" fill="#c9d1d9">JavaScript</text>
+    <text x="185" y="87" text-anchor="end" fill="#8b949e">43.78%</text>
+    <circle cx="209" cy="82" r="5" fill="#3572a5"/>
+    <text x="221" y="87" fill="#c9d1d9">Python</text>
+    <text x="370" y="87" text-anchor="end" fill="#8b949e">22.48%</text>
+    <circle cx="24" cy="112" r="5" fill="#f7523f"/>
+    <text x="36" y="117" fill="#c9d1d9">Blade</text>
+    <text x="185" y="117" text-anchor="end" fill="#8b949e">12.88%</text>
+    <circle cx="209" cy="112" r="5" fill="#4f5d95"/>
+    <text x="221" y="117" fill="#c9d1d9">PHP</text>
+    <text x="370" y="117" text-anchor="end" fill="#8b949e">10.39%</text>
+    <circle cx="24" cy="142" r="5" fill="#663399"/>
+    <text x="36" y="147" fill="#c9d1d9">CSS</text>
+    <text x="185" y="147" text-anchor="end" fill="#8b949e">10.45%</text>
+    <circle cx="209" cy="142" r="5" fill="#c6538c"/>
+    <text x="221" y="147" fill="#c9d1d9">SCSS</text>
+    <text x="370" y="147" text-anchor="end" fill="#8b949e">0.03%</text>
+  </g>
+  <text x="20" y="174" fill="#8b949e" font-family="Segoe UI, Arial, sans-serif" font-size="10">Public repositories · HTML excluded</text>
+</svg>

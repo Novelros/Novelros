@@ -1,0 +1,89 @@
+<svg width="840" height="220" viewBox="0 0 840 220" xmlns="http://www.w3.org/2000/svg">
+  <title>Novelrom — games, code and technologies</title>
+  <rect x="0.5" y="0.5" width="839" height="219" rx="12" fill="#0d1117" stroke="#30363d"/>
+
+  <g fill="#30363d">
+    <rect x="354" y="29" width="4" height="4"/>
+    <rect x="534" y="48" width="3" height="3"/>
+    <rect x="660" y="24" width="4" height="4"/>
+    <rect x="286" y="78" width="3" height="3"/>
+  </g>
+  <text x="30" y="45" fill="#f0f6fc" font-family="Consolas, monospace" font-size="28" font-weight="700">Novelrom</text>
+  <text x="31" y="68" fill="#61dafb" font-family="Consolas, monospace" font-size="11" letter-spacing="2">CODE · GAMES · EXPERIMENTS</text>
+
+  <a href="https://habr.com/ru/users/Laborant_Code/articles/">
+    <rect x="724" y="26" width="86" height="32" rx="6" fill="#77a2b6"/>
+    <text x="767" y="47" text-anchor="middle" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1">HABR</text>
+  </a>
+
+  <g>
+    <defs>
+      <g id="pixel-ghost">
+        <path d="M8 0H40V4H44V8H48V40H40V48H32V44H24V48H16V44H8V48H0V8H4V4H8Z" fill="currentColor"/>
+        <rect x="8" y="14" width="12" height="12" fill="#f0f6fc"/>
+        <rect x="28" y="14" width="12" height="12" fill="#f0f6fc"/>
+        <rect x="14" y="18" width="4" height="6" fill="#3572a5"/>
+        <rect x="34" y="18" width="4" height="6" fill="#3572a5"/>
+      </g>
+    </defs>
+    <g shape-rendering="crispEdges">
+      <use href="#pixel-ghost" transform="translate(66 92)" color="#ff4b4b"/>
+      <use href="#pixel-ghost" transform="translate(206 92)" color="#ff8cff"/>
+      <use href="#pixel-ghost" transform="translate(346 92)" color="#39c5cf"/>
+      <use href="#pixel-ghost" transform="translate(486 92)" color="#ffb84d"/>
+    </g>
+    <g fill="#ffd43b">
+      <circle cx="720" cy="116" r="4"/>
+      <circle cx="765" cy="116" r="4"/>
+      <circle cx="810" cy="116" r="4"/>
+    </g>
+    <path d="M0 148H840" stroke="#30363d"/>
+  </g>
+
+  <g transform="translate(650 116) scale(0.75)" shape-rendering="crispEdges">
+    <g fill="#3fb950">
+      <rect x="-4" y="-8" width="4" height="4"/>
+      <rect x="0" y="-12" width="4" height="4"/>
+      <rect x="4" y="-16" width="4" height="4"/>
+      <rect x="8" y="-20" width="4" height="4"/>
+      <rect x="8" y="-16" width="4" height="12"/>
+      <rect x="8" y="-4" width="4" height="4"/>
+      <rect x="12" y="-24" width="8" height="4"/>
+      <rect x="16" y="-20" width="8" height="4"/>
+    </g>
+    <rect x="-8" y="-4" width="8" height="4" fill="#ff4b4b"/>
+    <rect x="-12" y="0" width="16" height="8" fill="#ff4b4b"/>
+    <rect x="-8" y="8" width="8" height="4" fill="#c92a2a"/>
+    <rect x="8" y="0" width="8" height="4" fill="#e83232"/>
+    <rect x="4" y="4" width="16" height="8" fill="#e83232"/>
+    <rect x="8" y="12" width="8" height="4" fill="#b52222"/>
+    <rect x="-8" y="0" width="4" height="4" fill="#ff9b9b"/>
+    <rect x="8" y="4" width="4" height="4" fill="#ff8080"/>
+  </g>
+
+  <path d="M0 162H840" stroke="#21262d"/>
+  <text x="30" y="193" fill="#8b949e" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" letter-spacing="1.5">TECH STACK</text>
+  <g font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#c9d1d9">
+    <circle cx="170" cy="188" r="13" fill="#3776ab"/>
+    <text x="170" y="192" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">Py</text>
+    <text x="190" y="193">Python</text>
+
+    <rect x="270" y="175" width="26" height="26" rx="3" fill="#f7df1e"/>
+    <text x="283" y="193" text-anchor="middle" fill="#000000" font-size="11" font-weight="700">JS</text>
+    <text x="304" y="193">JavaScript</text>
+
+    <ellipse cx="410" cy="188" rx="16" ry="12" fill="#777bb3"/>
+    <text x="410" y="192" text-anchor="middle" fill="#ffffff" font-size="11" font-style="italic">php</text>
+    <text x="434" y="193">PHP</text>
+
+    <path d="M525 174 539 188 525 202 511 188Z" fill="#f05032"/>
+    <circle cx="525" cy="183" r="2" fill="#ffffff"/>
+    <circle cx="525" cy="194" r="2" fill="#ffffff"/>
+    <path d="M525 185V194M525 188H531" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="548" y="193">Git</text>
+
+    <path d="M610 174H634L631 199 622 203 613 199Z" fill="#1572b6"/>
+    <text x="622" y="194" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">3</text>
+    <text x="646" y="193">CSS</text>
+  </g>
+</svg>

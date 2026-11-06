@@ -1,17 +1,16 @@
 <div align="center">
 
-[![Habr](https://img.shields.io/badge/Habr-77A2B6?style=for-the-badge&logo=habr&logoColor=white)](https://habr.com/ru/users/Laborant_Code/articles/)
+<a href="https://habr.com/ru/users/Laborant_Code/articles/">
+  <img src="./assets/profile-header.svg" alt="Novelrom — Code, Games, Experiments" />
+</a>
 
-<h2 align="center">Stats </h2>
+<h2 align="center">Stats</h2>
 
-
-<div align=center>
-  <img width=390 src="https://github-readme-stats.vercel.app/api/top-langs/?username=Novelros&hide=HTML&langs_count=8&layout=compact&theme=react&border_radius=10&size_weight=0.5&count_weight=0.5&exclude_repo=github-readme-stats" alt="top langs" />
-  <img width=390 src="https://github-readme-stats.vercel.app/api?username=Novelros&count_private=true&show_icons=true&theme=react&rank_icon=github&border_radius=10" alt="readme stats" />
-  <br/>
+<div align="center">
+  <img width="390" src="./assets/top-langs.svg" alt="Top languages" />
+  <img width="390" src="./assets/github-stats.svg" alt="GitHub stats" />
 </div>
 
+<img src="./github-contribution-grid-snake.svg" alt="Pac-Man eating dots and a cherry" />
 
-
-![Pacman](https://raw.githubusercontent.com/Novelros/Novelros/main/github-contribution-grid-snake.svg)
 </div>
