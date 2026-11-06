@@ -13,5 +13,5 @@
 
 
 
-![Pacman](https://raw.githubusercontent.com/Novelros/Novelros/output/github-contribution-grid-snake.svg)
+![Pacman](https://raw.githubusercontent.com/Novelros/Novelros/main/github-contribution-grid-snake.svg)
 </div>
